@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
+import RoutePage from "./containers/RoutePage";
 
-function App() {
-	return (
-		<div className="App">
-			<p> code is working </p>
-		</div>
-	);
+class App extends Component {
+    render() {
+        return (
+            <RoutePage/>
+        );
+    }
 }
 
 export default App;
