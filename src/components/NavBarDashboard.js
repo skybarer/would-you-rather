@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Navbar, Nav, NavDropdown, Form, FormControl, Button} from 'react-bootstrap';
 
-class NavBar extends Component {
+class NavBarDashboard extends Component {
     render() {
         return (
             <div>
@@ -11,15 +11,10 @@ class NavBar extends Component {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
                             <Nav.Link href="#home">Home</Nav.Link>
-                            <Nav.Link href="#link">Link</Nav.Link>
-                            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                                <NavDropdown.Divider/>
-                                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                            </NavDropdown>
+                            <Nav.Link href="#leaderBoard">LeaderBoard</Nav.Link>
+                            <Nav.Link href="#addQuestion">AddQuestion</Nav.Link>
                         </Nav>
+                        <Button variant="outline-success">Logout</Button>
                     </Navbar.Collapse>
                 </Navbar>
             </div>
@@ -27,4 +22,4 @@ class NavBar extends Component {
     }
 }
 
-export default NavBar;
+export default NavBarDashboard;

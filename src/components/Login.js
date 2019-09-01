@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Card} from "react-bootstrap";
 import styled from 'styled-components';
+import NavBar from "./NavBar";
 
 const Wrapper = styled.section`
   min-width: 360px;
@@ -10,26 +11,51 @@ const Wrapper = styled.section`
   padding-top: 30px;
 `;
 
+const button = styled.button`
+    min-width: 300px;
+`;
+
+
+const users = [
+    {
+        id: 1,
+        key: 'Akash',
+        value: 'Akash'
+    },
+    {
+        id: 2,
+        key: 'Vikas',
+        value: 'Vikas'
+    },
+    {
+        id: 3,
+        key: 'Sarah',
+        value: 'Sarah'
+    }
+];
 
 class Login extends Component {
     render() {
         return (
+
             <div>
+                <NavBar/>
                 <Wrapper>
                     <Card>
                         <Card.Body>
                             <form>
                                 <div className="form-group">
-                                    <label>Email address</label>
-                                    <input type="email" className="form-control" id="exampleInputEmail1"
-                                           aria-describedby="emailHelp" placeholder="Enter email"/>
+                                    <label>Select User</label>
+                                    <select className="custom-select">
+                                        {
+                                            users.map((user) => {
+                                                return <option key={user.id} value={user.value}>{user.key}</option>
+
+                                            })
+                                        }
+                                    </select>
                                 </div>
-                                <div className="form-group">
-                                    <label>Password</label>
-                                    <input type="password" className="form-control" id="exampleInputPassword1"
-                                           placeholder="Password"/>
-                                </div>
-                                <button type="submit" className="btn btn-primary">Submit</button>
+                                <button type="submit" className="btn btn-success">Login</button>
                             </form>
                         </Card.Body>
                     </Card>
