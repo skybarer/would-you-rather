@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class Questions extends React.Comment {
+class Questions extends React.Component {
     render() {
         return (
             <div>
