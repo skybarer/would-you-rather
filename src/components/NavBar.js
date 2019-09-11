@@ -55,7 +55,7 @@ class NavBar extends Component {
                             <LinkContainer to="/">
                                 <Nav.Link>Home</Nav.Link>
                             </LinkContainer>
-                            <LinkContainer to="/board">
+                            <LinkContainer to="/leaderboard">
                                 <Nav.Link>Leader Board</Nav.Link>
                             </LinkContainer>
                             <LinkContainer to="/add">

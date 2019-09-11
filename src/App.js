@@ -14,6 +14,7 @@ import Home from "./containers/Home";
 import AddNewPoll from "./containers/AddNewPoll";
 
 
+
 class App extends PureComponent {
     static propTypes = {
         handleInitialData: PropTypes.func.isRequired,
@@ -36,19 +37,18 @@ class App extends PureComponent {
                         <div className="container">
                             <Switch>
                                 {notLoggedIn ?
-                                    <Route path='/' exact component={Login}/>
+                                    <Route path='/'  component={Login}/>
                                     :
                                     <Fragment>
                                         <Route path="/" exact component={Home}/>
                                         <Route path="/questions/:id" component={PollDetails}/>
                                         <Route path="/add" component={AddNewPoll}/>
-                                        <Route path="/board" component={LeaderBoard}/>
+                                        <Route path="/leaderboard" component={LeaderBoard}/>
                                     </Fragment>
                                 }
-                                <Route component={NotFound}/>
                             </Switch>
                         </div>
-
+                        {/*<Route component={NotFound}/>*/}
                     </div>
                 </Fragment>
             </Router>
