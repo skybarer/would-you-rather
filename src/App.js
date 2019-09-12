@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import LoadingBar from 'react-redux-loading';
 import React, {PureComponent, Fragment} from 'react';
 import {handleInitialData} from './actions/shared';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 import NavBar from "./components/NavBar";
 import Login from "./components/Login";
 import PollDetails from "./containers/PollDetails";
@@ -12,7 +12,6 @@ import LeaderBoard from "./containers/LeaderBoard";
 import NotFound from "./components/NotFound";
 import Home from "./containers/Home";
 import AddNewPoll from "./containers/AddNewPoll";
-
 
 
 class App extends PureComponent {
@@ -37,16 +36,16 @@ class App extends PureComponent {
                         <div className="container">
                             <Switch>
                                 {notLoggedIn ?
-                                    <Route path='/' exact component={Login}/>
+                                    <Route path='/' component={Login}/>
                                     :
                                     <Fragment>
-                                        <Route path="/" exact component={Home}/>
-                                        <Route path="/questions/:id" component={PollDetails}/>
-                                        <Route path="/add" component={AddNewPoll}/>
-                                        <Route path="/leaderboard" component={LeaderBoard}/>
+                                        <Route exact path="/" component={Home}/>
+                                        <Route exact path="/add" component={AddNewPoll}/>
+                                        <Route exact path="/leaderboard" component={LeaderBoard}/>
+                                        <Route exact path="/questions/:id" component={PollDetails}/>
+                                        <Route path='/404' component={NotFound}/>
                                     </Fragment>
                                 }
-                                <Route component={NotFound}/>
                             </Switch>
                         </div>
 

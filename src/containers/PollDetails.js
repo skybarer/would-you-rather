@@ -50,15 +50,14 @@ class PollDetails extends PureComponent {
         const percentageOptionTwo = (optionTwoVotes / (optionOneVotes + optionTwoVotes) * 100).toFixed(2);
         const {selectedOption} = this.state;
 
-
-
-
+        debugger;
         if (!poll) {
             return (
                 <div className='question-not-found-error'>
                     <h1 className='center'>404 Error</h1>
                     <p className='center'>Oops... It appears the question you are trying to reach doesn't exist</p>
-                    <p className='center'>Use the links above to view the question list or add the question to the list</p>
+                    <p className='center'>Use the links above to view the question list or add the question to the
+                        list</p>
                 </div>
             )
         }
@@ -118,7 +117,7 @@ class PollDetails extends PureComponent {
 function mapStateToProps({polls, users, authedUser}, props) {
     const {id} = props.match.params;
     const poll = polls[id];
-    const pollAuthor =poll ? users[poll.author]: null;
+    const pollAuthor = users[poll.author];
     const isOptionOneAnswered = poll.optionOne.votes.includes(authedUser);
     const isOptionTwoAnswered = poll.optionTwo.votes.includes(authedUser);
     const isAnswered = isOptionOneAnswered || isOptionTwoAnswered;

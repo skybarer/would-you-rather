@@ -4,8 +4,8 @@ import {Tab, Tabs} from "react-bootstrap";
 import {connect} from "react-redux";
 
 
-const Home = () => { // insert props as arguments here if any
-    const {answeredPolls, unansweredPolls} = this.props;
+const Home = (props) => { // insert props as arguments here if any
+    const {answeredPolls, unansweredPolls} = props;
     return (
         <div className="container">
             <Tabs defaultActiveKey="Unanswered" transition={false} id="noanim-tab-example">
