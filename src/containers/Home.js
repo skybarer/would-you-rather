@@ -3,31 +3,30 @@ import Poll from "../components/Poll";
 import {Tab, Tabs} from "react-bootstrap";
 import {connect} from "react-redux";
 
-class Home extends Component {
-    render() {
-        const {answeredPolls, unansweredPolls} = this.props;
-        return (
-            <div className="container">
-                <Tabs defaultActiveKey="Unanswered" transition={false} id="noanim-tab-example">
-                    <Tab eventKey="Unanswered" title="Unanswered">
-                        {unansweredPolls.map(qid =>
-                            <div key={qid}>
-                                <Poll id={qid}/>
-                            </div>
-                        )}
-                    </Tab>
-                    <Tab eventKey="Answered" title="Answered">
-                        {answeredPolls.map(qid =>
-                            <div key={qid}>
-                                <Poll id={qid}/>
-                            </div>
-                        )}
-                    </Tab>
-                </Tabs>
-            </div>
-        )
-    }
-}
+
+const Home = () => { // insert props as arguments here if any
+    const {answeredPolls, unansweredPolls} = this.props;
+    return (
+        <div className="container">
+            <Tabs defaultActiveKey="Unanswered" transition={false} id="noanim-tab-example">
+                <Tab eventKey="Unanswered" title="Unanswered">
+                    {unansweredPolls.map(qid =>
+                        <div key={qid}>
+                            <Poll id={qid}/>
+                        </div>
+                    )}
+                </Tab>
+                <Tab eventKey="Answered" title="Answered">
+                    {answeredPolls.map(qid =>
+                        <div key={qid}>
+                            <Poll id={qid}/>
+                        </div>
+                    )}
+                </Tab>
+            </Tabs>
+        </div>
+    )
+};
 
 function mapStateToProps({polls, users, authedUser}) {
     const user = users[authedUser];
