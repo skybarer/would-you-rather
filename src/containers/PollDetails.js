@@ -118,7 +118,7 @@ class PollDetails extends PureComponent {
 function mapStateToProps({polls, users, authedUser}, props) {
     const {id} = props.match.params;
     const poll = polls[id];
-    const pollAuthor = users[poll.author];
+    const pollAuthor =poll ? users[poll.author]: null;
     const isOptionOneAnswered = poll.optionOne.votes.includes(authedUser);
     const isOptionTwoAnswered = poll.optionTwo.votes.includes(authedUser);
     const isAnswered = isOptionOneAnswered || isOptionTwoAnswered;
