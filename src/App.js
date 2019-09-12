@@ -37,7 +37,7 @@ class App extends PureComponent {
                         <div className="container">
                             <Switch>
                                 {notLoggedIn ?
-                                    <Route path='/'  component={Login}/>
+                                    <Route path='/' exact component={Login}/>
                                     :
                                     <Fragment>
                                         <Route path="/" exact component={Home}/>
@@ -46,9 +46,10 @@ class App extends PureComponent {
                                         <Route path="/leaderboard" component={LeaderBoard}/>
                                     </Fragment>
                                 }
+                                <Route component={NotFound}/>
                             </Switch>
                         </div>
-                        {/*<Route component={NotFound}/>*/}
+
                     </div>
                 </Fragment>
             </Router>

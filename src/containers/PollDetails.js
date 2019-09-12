@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import {connect} from "react-redux";
-import {Redirect} from "react-router";
+// import {Redirect} from "react-router";
 import {Button, Card, Col, Form, Row} from "react-bootstrap";
 import User from "../components/User";
 import PropTypes from 'prop-types';
@@ -54,7 +54,13 @@ class PollDetails extends PureComponent {
 
 
         if (!poll) {
-            return <Redirect to='/404'/>
+            return (
+                <div className='question-not-found-error'>
+                    <h1 className='center'>404 Error</h1>
+                    <p className='center'>Oops... It appears the question you are trying to reach doesn't exist</p>
+                    <p className='center'>Use the links above to view the question list or add the question to the list</p>
+                </div>
+            )
         }
 
         return (
