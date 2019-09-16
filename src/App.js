@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import LoadingBar from 'react-redux-loading';
 import React, {PureComponent, Fragment} from 'react';
 import {handleInitialData} from './actions/shared';
-import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import NavBar from "./components/NavBar";
 import Login from "./components/Login";
 import PollDetails from "./containers/PollDetails";

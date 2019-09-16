@@ -1,24 +1,19 @@
 import React, {PureComponent} from 'react';
 import {connect} from "react-redux";
-// import {Redirect} from "react-router";
+import {Redirect} from "react-router";
 import {Button, Card, Col, Form, Row} from "react-bootstrap";
 import User from "../components/User";
 import PropTypes from 'prop-types';
 import {formatDate} from "../utils/helpers";
 import {handleSavePollAnswer} from '../actions/shared';
-// import styled from 'styled-components';
-
-// const SvgWrapper = styled.svg` `;
-
 
 class PollDetails extends PureComponent {
 
     static propTypes = {
-        poll: PropTypes.object,
-        pollAuthor: PropTypes.object,
-        isAnswered: PropTypes.bool.isRequired,
-        isOptionOneAnswered: PropTypes.bool.isRequired,
-        savePollAnswer: PropTypes.func.isRequired
+        id: PropTypes.object.isRequired,
+        polls: PropTypes.string.isRequired,
+        users: PropTypes.object.isRequired,
+        authedUser: PropTypes.string.isRequired
     };
 
     state = {
@@ -26,9 +21,7 @@ class PollDetails extends PureComponent {
     };
 
     radioSelected = (e) => {
-        this.setState({
-            selectedOption: e.target.value
-        });
+        this.setState({selectedOption: e.target.value});
     };
 
     handleSubmit = (e) => {
@@ -37,30 +30,33 @@ class PollDetails extends PureComponent {
     };
 
     render() {
-        const {poll, pollAuthor, isAnswered, isOptionOneAnswered} = this.props;
+        const {id, polls, users, authedUser} = this.props;
+        const poll = polls[id];
+        if (!poll) {
+            return (
+                <Redirect to="/404"/>
+            );
+        }
+
         const check = (
             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="13" viewBox="0 0 15 13">
                 <path fill="#40C057" fillRule="nonzero"
                       d="M4.714 12.399L.093 7.359a.368.368 0 0 1 0-.49l1.77-1.93a.298.298 0 0 1 .448 0l2.627 2.866L12.002.101a.298.298 0 0 1 .448 0l1.77 1.93a.368.368 0 0 1 0 .49l-9.058 9.878a.299.299 0 0 1-.448 0z"/>
             </svg>
         );
+
+
+        const pollAuthor = users[poll.author];
+        const isOptionOneAnswered = poll.optionOne.votes.includes(authedUser);
+        const isOptionTwoAnswered = poll.optionTwo.votes.includes(authedUser);
+        const isAnswered = isOptionOneAnswered || isOptionTwoAnswered;
+
         const optionOneVotes = poll.optionOne.votes.length;
         const optionTwoVotes = poll.optionTwo.votes.length;
         const percentageOptionOne = (optionOneVotes / (optionOneVotes + optionTwoVotes) * 100).toFixed(2);
         const percentageOptionTwo = (optionTwoVotes / (optionOneVotes + optionTwoVotes) * 100).toFixed(2);
         const {selectedOption} = this.state;
 
-        debugger;
-        if (!poll) {
-            return (
-                <div className='question-not-found-error'>
-                    <h1 className='center'>404 Error</h1>
-                    <p className='center'>Oops... It appears the question you are trying to reach doesn't exist</p>
-                    <p className='center'>Use the links above to view the question list or add the question to the
-                        list</p>
-                </div>
-            )
-        }
 
         return (
             <div>
@@ -116,16 +112,11 @@ class PollDetails extends PureComponent {
 
 function mapStateToProps({polls, users, authedUser}, props) {
     const {id} = props.match.params;
-    const poll = polls[id];
-    const pollAuthor = users[poll.author];
-    const isOptionOneAnswered = poll.optionOne.votes.includes(authedUser);
-    const isOptionTwoAnswered = poll.optionTwo.votes.includes(authedUser);
-    const isAnswered = isOptionOneAnswered || isOptionTwoAnswered;
     return {
-        poll,
-        pollAuthor,
-        isAnswered,
-        isOptionOneAnswered
+        id,
+        polls,
+        users,
+        authedUser
     }
 }
 

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Poll from "../components/Poll";
 import {Tab, Tabs} from "react-bootstrap";
 import {connect} from "react-redux";
